@@ -1,0 +1,38 @@
+---
+privoxy_accept_intercepted_requests: False
+privoxy_actionsfiles:
+  - match-all.action
+  - default.action
+  - user.action
+privoxy_allow_cgi_request_crunching: False
+privoxy_buffer_limit: 4096
+privoxy_compression_level: 1
+privoxy_confdir: /usr/local/etc/privoxy
+privoxy_connection_sharing: False
+privoxy_debug:
+  - 0
+privoxy_default_server_timeout: 60
+privoxy_enable_compression: False
+privoxy_enable_edit_actions: False
+privoxy_enable_remote_toggle: False
+privoxy_enable_remote_http_toggle: False
+privoxy_enable_proxy_authentication_forwarding: False
+privoxy_enforce_blocks: False
+privoxy_filterfiles:
+  - default.filter
+  - user.filter
+privoxy_forwarded_connect_retries: '0'
+privoxy_handle_as_empty_doc_returns_ok: False
+privoxy_hostname: "{{ inventory_hostname }}"
+privoxy_keep_alive_timeout: 5
+privoxy_listen_address: '127.0.0.1:8118'
+privoxy_logdir: /usr/local/var/log/privoxy
+privoxy_logfile: logfile
+privoxy_max_client_connections: 128
+privoxy_single_threaded: False
+privoxy_split_large_forms: False
+privoxy_socket_timeout: 300
+privoxy_toggle: True
+privoxy_tolerate_pipelining: True
+privoxy_user_manual: /usr/local/share/doc/privoxy/user-manual
+...

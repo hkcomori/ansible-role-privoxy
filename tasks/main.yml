@@ -1,0 +1,24 @@
+---
+- name: Ensure that the privoxy package is installed
+  tags: privoxy
+  homebrew:
+    name: privoxy
+    state: present
+  register: privoxy_homebrew
+
+- block:
+    - name: Purging the original privoxy config
+      file:
+        path: /usr/local/etc/privoxy/config
+        state: absent
+
+    - name: Applying privoxy configurations
+      template:
+        src: config.j2
+        dest: /usr/local/etc/privoxy/config
+        owner: "{{ ansible_user_uid }}"
+        group: "{{ ansible_user_gid }}"
+        mode: 0640
+  tags: privoxy
+  when: privoxy_homebrew|success
+...

@@ -1,0 +1,145 @@
+# {{ ansible_managed }}
+
+#
+#  1. LOCAL SET-UP DOCUMENTATION
+#  ==============================
+#
+
+user-manual {{ privoxy_user_manual }}
+{% if privoxy_trust_info_url is defined %}
+{%   for trust_info_url in privoxy_trust_info_url %}
+trust-info-url {{ trust_info_url }}
+{%   endfor %}
+{% endif %}
+{% if privoxy_admin_address is defined %}
+admin-address {{ privoxy_admin_address }}
+{% endif %}
+{% if privoxy_proxy_info_url is defined %}
+proxy-info-url {{ privoxy_proxy_info_url }}
+{% endif %}
+
+#
+#  2. CONFIGURATION AND LOG FILE LOCATIONS
+#  ========================================
+#
+
+confdir {{ privoxy_confdir }}
+{% if privoxy_templdir is defined %}
+templdir {{ privoxy_templdir }}
+{% endif %}
+{% if privoxy_temporary_directory is defined %}
+temporary-directory {{ privoxy_temporary_directory }}
+{% endif %}
+logdir {{ privoxy_logdir }}
+{% for actionsfile in privoxy_actionsfiles %}
+actionsfile {{ actionsfile }}
+{% endfor %}
+{% for filterfile in privoxy_filterfiles %}
+filterfile {{ filterfile }}
+{% endfor %}
+logfile {{ privoxy_logfile }}
+{% if privoxy_trustfile is defined %}
+trustfile {{ privoxy_trustfile }}
+{% endif %}
+
+#
+#  3. DEBUGGING
+#  =============
+#
+
+{% for debug in privoxy_debug %}
+debug {{ debug }}
+{% endfor %}
+single-threaded {{ '1' if privoxy_single_threaded is defined and privoxy_single_threaded else '0' }}
+hostname {{ privoxy_hostname }}
+
+#
+#  4. ACCESS CONTROL AND SECURITY
+#  ===============================
+#
+
+listen-address {{ privoxy_listen_address }}
+toggle {{ '1' if privoxy_toggle is defined and privoxy_toggle else '0' }}
+enable-remote-toggle {{ '1' if privoxy_enable_remote_toggle is defined and privoxy_enable_remote_toggle else '0' }}
+enable-remote-http-toggle {{ '1' if privoxy_enable_remote_http_toggle is defined and privoxy_enable_remote_http_toggle else '0' }}
+enable-edit-actions {{ '1' if privoxy_enable_edit_actions is defined and privoxy_enable_edit_actions else '0' }}
+enforce-blocks {{ '1' if privoxy_enforce_blocks is defined and privoxy_enforce_blocks else '0' }}
+{% if privoxy_permit_access is defined %}
+{%   for permit_access in privoxy_permit_access %}
+{%     if permit_access.src_addr is defined %}
+{%       if permit_access.dst_addr is defined %}
+permit-access {{ permit_access.src_addr }} {{ permit_access.dst_addr }}
+{%       else %}
+permit-access {{ permit_access.src_addr }}
+{%       endif %}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+buffer-limit {{ privoxy_buffer_limit }}
+enable-proxy-authentication-forwarding {{ '1' if privoxy_enable_proxy_authentication_forwarding is defined and privoxy_enable_proxy_authentication_forwarding else '0' }}
+
+#
+#  5. FORWARDING
+#  ==============
+#
+
+{% if privoxy_forward is defined %}
+{%   for forward in privoxy_forward %}
+{%     if forward.target_pattern is defined and forward.http_parent is defined %}
+forward {{ forward.target_pattern }} {{ forward.http_parent }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+{% if privoxy_forward_socks4 is defined %}
+{%   for fs4 in privoxy_forward_socks4 %}
+{%     if fs4.target_pattern is defined and fs4.socks_proxy is defined and fs4.http_parent is defined %}
+forward-socks4 {{ fs4.target_pattern }} {{ fs4.socks_proxy }} {{ fs4.http_parent }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+{% if privoxy_forward_socks4a is defined %}
+{%   for fs4a in privoxy_forward_socks4a %}
+{%     if fs4a.target_pattern is defined and fs4a.socks_proxy is defined and fs4a.http_parent is defined %}
+forward-socks4a {{ fs4a.target_pattern }} {{ fs4a.socks_proxy }} {{ fs4a.http_parent }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+{% if privoxy_forward_socks5 is defined %}
+{%   for fs5 in privoxy_forward_socks5 %}
+{%     if fs5.target_pattern is defined and fs5.socks_proxy is defined and fs5.http_parent is defined %}
+forward-socks5 {{ fs5.target_pattern }} {{ fs5.socks_proxy }} {{ fs5.http_parent }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+{% if privoxy_forward_socks5t is defined %}
+{%   for fs5t in privoxy_forward_socks5t %}
+{%     if fs5t.target_pattern is defined and fs5t.socks_proxy is defined and fs5t.http_parent is defined %}
+forward-socks5t {{ fs5t.target_pattern }} {{ fs5t.socks_proxy }} {{ fs5t.http_parent }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+forwarded-connect-retries {{ privoxy_forwarded_connect_retries }}
+
+#
+#  6. MISCELLANEOUS
+#  =================
+#
+
+accept-intercepted-requests {{ '1' if privoxy_accept_intercepted_requests is defined and privoxy_accept_intercepted_requests else '0' }}
+allow-cgi-request-crunching {{ '1' if privoxy_allow_cgi_request_crunching is defined and privoxy_allow_cgi_request_crunching else '0' }}
+split-large-forms {{ '1' if privoxy_split_large_forms is defined and privoxy_split_large_forms else '0' }}
+keep-alive-timeout {{ privoxy_keep_alive_timeout }}
+tolerate-pipelining {{ '1' if privoxy_tolerate_pipelining is defined and privoxy_tolerate_pipelining else '0' }}
+default-server-timeout {{ privoxy_default_server_timeout }}
+connection-sharing {{ '1' if privoxy_connection_sharing is defined and privoxy_connection_sharing else '0' }}
+socket-timeout {{ privoxy_socket_timeout }}
+max-client-connections {{ privoxy_max_client_connections }}
+handle-as-empty-doc-returns-ok {{ '1' if privoxy_handle_as_empty_doc_returns_ok is defined and privoxy_handle_as_empty_doc_returns_ok else '0' }}
+enable-compression {{ '1' if privoxy_enable_compression is defined and privoxy_enable_compression else '0' }}
+compression-level {{ privoxy_compression_level }}
+{% if privoxy_client_header_order is defined and privoxy_client_header_order|length > 0 %}
+client-header-order \
+{%   for client_header in privoxy_client_header_order %}
+  {{ client_header }}{% if not loop.last %} \{% endif %}
+{%   endfor %}
+{% endif %}
