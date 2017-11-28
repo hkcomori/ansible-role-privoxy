@@ -75,6 +75,13 @@ permit-access {{ permit_access.src_addr }}
 {%     endif %}
 {%   endfor %}
 {% endif %}
+deny-access {{ deny_access.src_addr }} {{ deny_access.dst_addr }}
+{%       else %}
+deny-access {{ deny_access.src_addr }}
+{%       endif %}
+{%     endif %}
+{%   endfor %}
+{% endif %}
 buffer-limit {{ privoxy_buffer_limit }}
 enable-proxy-authentication-forwarding {{ '1' if privoxy_enable_proxy_authentication_forwarding is defined and privoxy_enable_proxy_authentication_forwarding else '0' }}
 
