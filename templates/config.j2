@@ -76,7 +76,7 @@ permit-access {{ permit_access.src_addr }}
 {%   endfor %}
 {% endif %}
 {% if privoxy_deny_access is defined %}
-{%   for deny_access in deny_permit_access %}
+{%   for deny_access in privoxy_deny_access %}
 {%     if deny_access.src_addr is defined %}
 {%       if deny_access.dst_addr is defined %}
 deny-access {{ deny_access.src_addr }} {{ deny_access.dst_addr }}
