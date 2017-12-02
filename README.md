@@ -90,7 +90,7 @@ Additional variables not defined by default:
     
 ## Dependencies
 
-  * https://galaxy.ansible.com/geerlingguy/homebrew
+None
 
 ## Example Playbook
 
