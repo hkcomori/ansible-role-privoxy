@@ -20,8 +20,12 @@ proxy-info-url {{ privoxy_proxy_info_url }}
 #
 
 confdir {{ privoxy_confdir }}
+{% if privoxy_templdir|length > 0 %}
 templdir {{ privoxy_templdir }}
+{% endif %}
+{% if privoxy_temporary_directory|length > 0 %}
 temporary-directory {{ privoxy_temporary_directory }}
+{% endif %}
 logdir {{ privoxy_logdir }}
 {% for actionsfile in privoxy_actionsfiles %}
 actionsfile {{ actionsfile }}

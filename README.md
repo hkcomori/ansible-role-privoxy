@@ -56,8 +56,8 @@ Available variables are listed below, along with default values:
     privoxy_single_threaded: false
     privoxy_split_large_forms: false
     privoxy_socket_timeout: 300
-    privoxy_templdir: '.'
-    privoxy_temporary_directory: '.'
+    privoxy_templdir: ''
+    privoxy_temporary_directory: ''
     privoxy_toggle: true
     privoxy_tolerate_pipelining: true
     privoxy_trust_info_url: []
