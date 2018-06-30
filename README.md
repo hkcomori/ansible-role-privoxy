@@ -61,7 +61,7 @@ Available variables are listed below, along with default values:
     privoxy_toggle: true
     privoxy_tolerate_pipelining: true
     privoxy_trust_info_url: []
-    privoxy_trustfile: trust
+    privoxy_trustfile: ''
     privoxy_user_manual: /usr/local/share/doc/privoxy/user-manual
 
 ## Dependencies

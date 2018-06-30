@@ -34,7 +34,9 @@ actionsfile {{ actionsfile }}
 filterfile {{ filterfile }}
 {% endfor %}
 logfile {{ privoxy_logfile }}
+{% if privoxy_trustfile|length > 0 %}
 trustfile {{ privoxy_trustfile }}
+{% endif %}
 
 #
 #  3. DEBUGGING
