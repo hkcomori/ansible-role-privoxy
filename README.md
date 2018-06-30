@@ -1,6 +1,8 @@
 # ansible-role-privoxy
 
 [![Build Status](https://travis-ci.org/tkimball83/ansible-role-privoxy.svg?branch=master)](https://travis-ci.org/tkimball83/ansible-role-privoxy)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-privoxy-blue.svg?style=flat)](https://galaxy.ansible.com/tkimball83/privoxy)
+[![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](COPYING)
 
 macOS - A non-caching web proxy
 
@@ -12,82 +14,56 @@ This role requires homebrew to be installed.
 
 Available variables are listed below, along with default values:
 
-    privoxy_accept_intercepted_requests: False
+    privoxy_accept_intercepted_requests: false
     privoxy_actionsfiles:
       - match-all.action
       - default.action
       - user.action
-    privoxy_allow_cgi_request_crunching: False
+    privoxy_admin_address: privoxy@localhost
+    privoxy_allow_cgi_request_crunching: false
     privoxy_buffer_limit: 4096
+    privoxy_client_header_order: []
     privoxy_compression_level: 1
     privoxy_confdir: /usr/local/etc/privoxy
-    privoxy_connection_sharing: False
+    privoxy_connection_sharing: false
     privoxy_debug:
       - 0
     privoxy_default_server_timeout: 60
-    privoxy_enable_compression: False
-    privoxy_enable_edit_actions: False
-    privoxy_enable_remote_toggle: False
-    privoxy_enable_remote_http_toggle: False
-    privoxy_enable_proxy_authentication_forwarding: False
-    privoxy_enforce_blocks: False
+    privoxy_enable_compression: false
+    privoxy_enable_edit_actions: false
+    privoxy_enable_remote_toggle: false
+    privoxy_enable_remote_http_toggle: false
+    privoxy_enable_proxy_authentication_forwarding: false
+    privoxy_enforce_blocks: false
     privoxy_filterfiles:
       - default.filter
       - user.filter
-    privoxy_forwarded_connect_retries: '0'
-    privoxy_handle_as_empty_doc_returns_ok: False
+    privoxy_forward: []
+    privoxy_forward_socks4: []
+    privoxy_forward_socks4a: []
+    privoxy_forward_socks5: []
+    privoxy_forward_socks5t: []
+    privoxy_forwarded_connect_retries: 0
+    privoxy_handle_as_empty_doc_returns_ok: false
     privoxy_hostname: "{{ inventory_hostname }}"
     privoxy_keep_alive_timeout: 5
     privoxy_listen_address: '127.0.0.1:8118'
     privoxy_logdir: /usr/local/var/log/privoxy
     privoxy_logfile: logfile
     privoxy_max_client_connections: 128
-    privoxy_single_threaded: False
-    privoxy_split_large_forms: False
-    privoxy_socket_timeout: 300
-    privoxy_toggle: True
-    privoxy_tolerate_pipelining: True
-    privoxy_user_manual: /usr/local/share/doc/privoxy/user-manual
-
-Additional variables not defined by default:
-
-    privoxy_admin_address: privoxy-admin@example.com
-    privoxy_client_header_order:
-      - Host
-      - Accept
-      - Cookie
-      - Content-Length
-      - Content-Type
-    privoxy_forward:
-      - target_pattern: /
-        http_parent: parent-proxy.example.org:8080
-    privoxy_forward_socks4:
-      - target_pattern: /
-        socks_proxy: socks-gw.example.com:1080
-        http_parent: '.'
-    privoxy_forward_socks4a:
-      - target_pattern: /
-        socks_proxy: socks-gw.example.com:1080
-        http_parent: www-cache.isp.example.net:8080
-    privoxy_forward_socks5:
-      - target_pattern: /
-        socks_proxy: socks-gw.example.com:1080
-        http_parent: www-cache.isp.example.net:8080
-    privoxy_forward_socks5t:
-      - target_pattern: /
-        socks_proxy: 127.0.0.1:9050
-        http_parent: '.'
-    privoxy_permit_access:
-      - src_addr: www.privoxy.org/24
-        dst_addr: www.example.com/32
+    privoxy_permit_access: []
     privoxy_proxy_info_url: http://www.example.com/proxy-service.html
+    privoxy_single_threaded: false
+    privoxy_split_large_forms: false
+    privoxy_socket_timeout: 300
     privoxy_templdir: '.'
     privoxy_temporary_directory: '.'
+    privoxy_toggle: true
+    privoxy_tolerate_pipelining: true
+    privoxy_trust_info_url: []
     privoxy_trustfile: trust
-    privoxy_trust_info_url:
-      - http://www.example.com/why_we_block.html
-      - http://www.example.com/what_we_allow.html
-    
+    privoxy_user_manual: /usr/local/share/doc/privoxy/user-manual
+
 ## Dependencies
 
 None
@@ -98,7 +74,7 @@ None
       connection: local
       roles:
         - role: tkimball83.privoxy
-          privoxy_admin_address: tkimball@linuxhq.org
+          privoxy_admin_address: privoxy@linuxhq.org
           privoxy_forward_socks5t:
             - target_pattern: /
               socks_proxy: 127.0.0.1:9050
@@ -106,8 +82,17 @@ None
 
 ## License
 
-GPLv3
+Copyright (C) 2018 Taylor Kimball <tkimball@linuxhq.org>
 
-## Author Information
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-This role was created by [Taylor Kimball](http://www.linuxhq.org).
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
