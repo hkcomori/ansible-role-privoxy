@@ -1,6 +1,7 @@
 ---
 dependencies: []
 galaxy_info:
+  role_name: privoxy
   author: tkimball83
   description: macOS - A non-caching web proxy
   license: GPLv3
