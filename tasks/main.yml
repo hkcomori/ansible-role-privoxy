@@ -4,7 +4,6 @@
   homebrew:
     name: privoxy
     state: present
-  register: privoxy_homebrew
 
 - name: Attempting to overlay privoxy configurations
   tags: privoxy
@@ -14,5 +13,4 @@
     owner: "{{ ansible_real_user_id }}"
     group: "{{ ansible_real_group_id }}"
     mode: 0640
-  when: privoxy_homebrew is success
 ...
