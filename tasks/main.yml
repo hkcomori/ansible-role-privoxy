@@ -9,7 +9,7 @@
   tags: privoxy
   template:
     src: config.j2
-    dest: /usr/local/etc/privoxy/config
+    dest: "{{ privoxy_confdir }}/config"
     owner: "{{ ansible_real_user_id }}"
     group: "{{ ansible_real_group_id }}"
     mode: 0640
