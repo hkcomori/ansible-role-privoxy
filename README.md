@@ -29,6 +29,7 @@ Available variables are listed below, along with default values:
     privoxy_debug:
       - 0
     privoxy_default_server_timeout: 60
+    privoxy_deny_access: []
     privoxy_enable_compression: false
     privoxy_enable_edit_actions: false
     privoxy_enable_remote_toggle: false
