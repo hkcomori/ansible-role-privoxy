@@ -1,0 +1,7 @@
+---
+- name: Ensure that the privoxy package is installed
+  tags: privoxy
+  homebrew:
+    name: privoxy
+    state: present
+...

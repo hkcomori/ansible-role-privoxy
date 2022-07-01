@@ -1,0 +1,7 @@
+---
+- name: Ensure that the privoxy package is installed
+  tags: privoxy
+  package:
+    name: privoxy
+    state: present
+...

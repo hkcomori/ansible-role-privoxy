@@ -1,16 +1,14 @@
 ---
-- name: Ensure that the privoxy package is installed
-  tags: privoxy
-  homebrew:
-    name: privoxy
-    state: present
+- include_vars: "{{ ansible_os_family }}.yml"
+
+- include: "setup-{{ ansible_os_family }}.yml"
 
 - name: Attempting to overlay privoxy configurations
   tags: privoxy
   template:
     src: config.j2
     dest: "{{ privoxy_confdir }}/config"
-    owner: "{{ ansible_real_user_id }}"
-    group: "{{ ansible_real_group_id }}"
+    owner: "{{ privoxy_user }}"
+    group: "{{ privoxy_group }}"
     mode: 0640
 ...

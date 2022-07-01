@@ -1,0 +1,4 @@
+---
+privoxy_user: "{{ ansible_real_user_id }}"
+privoxy_group: "{{ ansible_real_group_id }}"
+...
