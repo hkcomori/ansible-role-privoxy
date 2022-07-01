@@ -1,4 +1,7 @@
 ---
 privoxy_user: "{{ ansible_real_user_id }}"
 privoxy_group: "{{ ansible_real_group_id }}"
+privoxy_confdir: /usr/local/etc/privoxy
+privoxy_logdir: /usr/local/var/log/privoxy
+privoxy_user_manual: /usr/local/share/doc/privoxy/user-manual
 ...

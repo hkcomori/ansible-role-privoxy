@@ -24,7 +24,6 @@ Available variables are listed below, along with default values:
     privoxy_buffer_limit: 4096
     privoxy_client_header_order: []
     privoxy_compression_level: 1
-    privoxy_confdir: /usr/local/etc/privoxy
     privoxy_connection_sharing: false
     privoxy_debug:
       - 0
@@ -48,7 +47,6 @@ Available variables are listed below, along with default values:
     privoxy_hostname: "{{ inventory_hostname }}"
     privoxy_keep_alive_timeout: 5
     privoxy_listen_address: '127.0.0.1:8118'
-    privoxy_logdir: /usr/local/var/log/privoxy
     privoxy_logfile: logfile
     privoxy_max_client_connections: 128
     privoxy_permit_access: []
@@ -62,7 +60,6 @@ Available variables are listed below, along with default values:
     privoxy_tolerate_pipelining: true
     privoxy_trust_info_url: []
     privoxy_trustfile: ''
-    privoxy_user_manual: /usr/local/share/doc/privoxy/user-manual
 
 ## Dependencies
 
