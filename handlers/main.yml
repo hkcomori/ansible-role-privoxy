@@ -1,0 +1,6 @@
+---
+- name: Restart privoxy
+  service:
+    name: privoxy
+    state: restarted
+...

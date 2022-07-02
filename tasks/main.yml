@@ -13,4 +13,6 @@
     owner: "{{ ansible_real_user_id }}"
     group: "{{ ansible_real_group_id }}"
     mode: 0640
+  notify:
+    - Restart privoxy
 ...
