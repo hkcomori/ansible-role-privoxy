@@ -1,5 +1,8 @@
 ---
-- name: Restart privoxy
+- name: Restart privoxy for Darwin
+  command: brew services restart privoxy
+
+- name: Restart privoxy for Debian
   service:
     name: privoxy
     state: restarted
