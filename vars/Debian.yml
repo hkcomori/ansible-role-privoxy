@@ -1,0 +1,7 @@
+---
+privoxy_user: "privoxy"
+privoxy_group: "root"
+privoxy_confdir: /etc/privoxy
+privoxy_logdir: /var/log/privoxy
+privoxy_user_manual: /usr/share/doc/privoxy/user-manual
+...
