@@ -11,4 +11,6 @@
     owner: "{{ privoxy_user }}"
     group: "{{ privoxy_group }}"
     mode: 0640
+  notify:
+    - "Restart privoxy for {{ ansible_os_family }}"
 ...
